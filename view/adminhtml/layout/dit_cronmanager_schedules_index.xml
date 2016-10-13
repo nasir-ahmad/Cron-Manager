@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceContainer name="content">
+			<block class="DIT\CronManager\Block\Adminhtml\Schedules\Index" name="adminhtml.block.cronmanager.schedules.grid.container">
+				<block class="Magento\Backend\Block\Widget\Grid" name="adminhtml.block.cronmanager.schedules.grid" as="grid">
+					<arguments>
+						<argument name="id" xsi:type="string">dit_cronmanager_schedules_grid</argument>
+						<argument name="dataSource" xsi:type="object">Magento\Cron\Model\ResourceModel\Schedule\Collection</argument>
+						<argument name="default_sort" xsi:type="string">sort_order</argument>
+						<argument name="default_dir" xsi:type="string">DESC</argument>
+						<argument name="save_parameters_in_session" xsi:type="string">1</argument>
+					</arguments>
+					<block class="Magento\Backend\Block\Widget\Grid\Massaction" name="cron_manager.massaction" as="grid.massaction">
+						<arguments>
+							<argument name="massaction_id_field" xsi:type="string">id</argument>
+							<argument name="form_field_name" xsi:type="string">schedule_ids</argument>
+							<argument name="use_select_all" xsi:type="string">1</argument>
+							<argument name="options" xsi:type="array">
+								<item name="delete" xsi:type="array">
+									<item name="label" xsi:type="string" translate="true">Delete</item>
+									<item name="url" xsi:type="string">dit_cronmanager/schedules/massDelete</item>
+								</item>
+								<item name="reset" xsi:type="array">
+									<item name="label" xsi:type="string" translate="true">Reset</item>
+									<item name="url" xsi:type="string">dit_cronmanager/schedules/massReset</item>
+								</item>
+								<item name="run" xsi:type="array">
+									<item name="label" xsi:type="string" translate="true">Run Now</item>
+									<item name="url" xsi:type="string">dit_cronmanager/schedules/massRun</item>
+								</item>
+							</argument>
+						</arguments>
+					</block>
+					<block class="Magento\Backend\Block\Widget\Grid\ColumnSet" as="grid.columnSet" name="dit_cronmanager.schedules.grid.columnSet">
+						<arguments>
+							<argument name="rowUrl" xsi:type="array">
+								<item name="path" xsi:type="string">dit_cronmanager/*/edit</item>
+								<item name="extraParamsTemplate" xsi:type="array">
+									<item name="id" xsi:type="string">getId</item>
+								</item>
+							</argument>
+						</arguments>
+						<block class="Magento\Backend\Block\Widget\Grid\Column" as="id">
+							<arguments>
+								<argument name="header" xsi:type="string" translate="true">ID</argument>
+								<argument name="index" xsi:type="string">schedule_id</argument>
+								<argument name="column_css_class" xsi:type="string">col-id</argument>
+								<argument name="header_css_class" xsi:type="string">col-id</argument>
+							</arguments>
+						</block>
+						<block class="Magento\Backend\Block\Widget\Grid\Column" as="code">
+							<arguments>
+								<argument name="header" xsi:type="string" translate="true">Code</argument>
+								<argument name="index" xsi:type="string">job_code</argument>
+							</arguments>
+						</block>
+						<block class="Magento\Backend\Block\Widget\Grid\Column" as="created_at">
+							<arguments>
+								<argument name="header" xsi:type="string" translate="true">Created At</argument>
+								<argument name="index" xsi:type="string">created_at</argument>
+								<argument name="type" xsi:type="string">datetime</argument>
+							</arguments>
+						</block>
+						<block class="Magento\Backend\Block\Widget\Grid\Column" as="scheduled_at">
+							<arguments>
+								<argument name="header" xsi:type="string" translate="true">Scheduled At</argument>
+								<argument name="index" xsi:type="string">scheduled_at</argument>
+								<argument name="type" xsi:type="string">datetime</argument>
+							</arguments>
+						</block>
+						<block class="Magento\Backend\Block\Widget\Grid\Column" as="executed_at">
+							<arguments>
+								<argument name="header" xsi:type="string" translate="true">Executed At</argument>
+								<argument name="index" xsi:type="string">executed_at</argument>
+								<argument name="type" xsi:type="string">datetime</argument>
+							</arguments>
+						</block>
+						<block class="Magento\Backend\Block\Widget\Grid\Column" as="finished_at" renderer="date">
+							<arguments>
+								<argument name="header" xsi:type="string" translate="true">Finished At</argument>
+								<argument name="index" xsi:type="string">finished_at</argument>
+								<argument name="type" xsi:type="string">datetime</argument>
+							</arguments>
+						</block>
+						<block class="Magento\Backend\Block\Widget\Grid\Column" as="status">
+							<arguments>
+								<argument name="header" xsi:type="string" translate="true">Status</argument>
+								<argument name="index" xsi:type="string">status</argument>
+								<argument name="type" xsi:type="string">options</argument>
+								<argument name="options" xsi:type="array">
+									<item name="noselection" xsi:type="array">
+										<item name="label" xsi:type="string" translate="true">-- Please Select --</item>
+										<item name="value" xsi:type="string"></item>
+									</item>
+									<item name="running" xsi:type="array">
+										<item name="label" xsi:type="string" translate="true">Running</item>
+										<item name="value" xsi:type="string">running</item>
+									</item>
+									<item name="pending" xsi:type="array">
+										<item name="label" xsi:type="string" translate="true">Pending</item>
+										<item name="value" xsi:type="string">pending</item>
+									</item>
+									<item name="missed" xsi:type="array">
+										<item name="label" xsi:type="string" translate="true">Missed</item>
+										<item name="value" xsi:type="string">missed</item>
+									</item>
+								</argument>
+							</arguments>
+						</block>
+					</block>
+				</block>
+			</block>
+		</referenceContainer>
+	</body>
+</page>

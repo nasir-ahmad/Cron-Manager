@@ -1,0 +1,53 @@
+<div id="schedules_timeline">Loading...Please wait.</div>
+
+<script>
+	require.config({
+		deps: [
+			'jquery',
+			'timeline-min',
+		],
+		callback: function ($) {
+			var schedules = <?php echo json_encode($this->getSchedulesCollection()->toArray()); ?>;
+			var items = schedules.items;
+			var data = [];
+
+			for(var k in items){
+				var _d = {
+					'start': new Date(items[k].created_at),
+					'end': new Date(items[k].created_at),
+					'content': [
+							items[k].status.toUpperCase(),
+							items[k].message, 
+						].join("<br>"),
+					'className': items[k].status,
+					'group' : items[k].job_code,
+				}
+				
+				if (items[k].scheduled_at){
+					_d.start = new Date(items[k].scheduled_at);
+				}
+				if (items[k].executed_at){
+					_d.start = new Date(items[k].executed_at);
+				}
+				
+				if (items[k].finished_at){
+					_d.end = new Date(items[k].finished_at);
+				}
+				
+				data.push(_d);
+			}
+
+			// specify options
+			var options = {
+				'style': 'left'
+			};
+
+			// Instantiate our timeline object.
+			var timeline = new links.Timeline(document.getElementById('schedules_timeline'), options);
+
+
+			// Draw our timeline with the created data and options
+			timeline.draw(data);
+		}
+	});
+</script>

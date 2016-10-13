@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Backend/etc/menu.xsd">
+	<menu>
+		<add id="dit_cronmanager::base" title="Cron Manager" module="DIT_CronManager" parent="Magento_Backend::system" sortOrder="90" resource="DIT_CronManager::base"/>
+		<add id="dit_cronmanager::schedule_list" title="List of Schedules" module="DIT_CronManager" sortOrder="10" parent="dit_cronmanager::base" action="dit_cronmanager/schedules/index/" resource="DIT_CronManager::schedule_list"/>
+		<add id="dit_cronmanager::schedule_timeline" title="View Timeline" module="DIT_CronManager" sortOrder="20" parent="dit_cronmanager::base" action="dit_cronmanager/schedules/timeline/" resource="DIT_CronManager::schedule_timeline"/>
+		<add id="dit_cronmanager::cron_configuration" title="Cron Configuration" module="DIT_CronManager" sortOrder="30" parent="dit_cronmanager::base" action="adminhtml/system_config/edit/section/system/" resource="DIT_CronManager::cron_configuration"/>
+	</menu>
+</config>
