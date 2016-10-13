@@ -93,6 +93,10 @@
 										<item name="label" xsi:type="string" translate="true">-- Please Select --</item>
 										<item name="value" xsi:type="string"></item>
 									</item>
+									<item name="success" xsi:type="array">
+										<item name="label" xsi:type="string" translate="true">Success</item>
+										<item name="value" xsi:type="string">success</item>
+									</item>
 									<item name="running" xsi:type="array">
 										<item name="label" xsi:type="string" translate="true">Running</item>
 										<item name="value" xsi:type="string">running</item>
